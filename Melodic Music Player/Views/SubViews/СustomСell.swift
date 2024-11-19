@@ -8,21 +8,41 @@
 import SwiftUI
 
 struct СustomСell: View {
-    var song: Model
+    var melody: Model
+    let formatted: (TimeInterval) -> String
     var body: some View {
         HStack {
-            Color.cyan
-                .frame(width: 60, height: 60)
+            if let data = melody.image, let image = UIImage(data: data) {
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 60, height: 60)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            } else {
+                ZStack{
+                    Color.gray
+                        .frame(width: 60, height: 60)
+                        
+                    Image(systemName: "music.quarternote.3")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 32)
+                        .foregroundStyle(.white)
+                }
                 .cornerRadius(10)
+            }
             VStack(alignment: .leading){
-                Text(song.name)
+                Text(melody.name)
                     .firstFont()
-                Text(song.artist ?? "Неизвестен")
+                Text(melody.artist ?? "Неизвестен")
                     .secondFont()
             }
             Spacer()
-            Text("0")
-                .secondFont()
+            if let duration = melody.duration {
+                Text(formatted(duration))
+                    .secondFont()
+            }
+           
         }
         .listRowBackground(Color.clear)
         .listRowSeparator(.hidden)

@@ -6,6 +6,14 @@ import UIKit
 
 @Observable
 class ViewModel {
-   var melodies: [Model] = [Model( name: "Название1", artist: "Имя Артиста1", data: Data(), image: Data(), duration: 12), Model( name: "Название2", artist: "Имя Артиста2", data: Data(), image: Data(), duration: 13)]
+    var melodies: [Model] = []
+    
+    func formatted(duration: TimeInterval) -> String {
+        let format = DateComponentsFormatter()
+        format.allowedUnits = [.minute, .second]
+        format.unitsStyle = .positional
+        format.zeroFormattingBehavior = .pad
+        return format.string(from: duration) ?? ""
+    }
 
     }

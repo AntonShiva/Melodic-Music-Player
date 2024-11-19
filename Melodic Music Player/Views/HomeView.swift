@@ -9,7 +9,7 @@ struct HomeView: View {
                 Background()
                 // Список композиций
                 List(viewModel.melodies) { song in
-                    СustomСell(song: song)
+                    СustomСell(melody: song, formatted: viewModel.formatted)
                 }
                 .listStyle(.plain)
             }
