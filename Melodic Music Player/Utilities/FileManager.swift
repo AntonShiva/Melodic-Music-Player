@@ -15,7 +15,9 @@ struct FileManager: View {
                 Image(systemName: "plus")
                     .foregroundStyle(.white)
             }
+            
         }
+        .padding(.trailing, 10)
         .fileImporter(
             isPresented: $openFile,
             allowedContentTypes: [.audio],

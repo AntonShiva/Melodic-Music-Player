@@ -1,7 +1,7 @@
 
 import SwiftUI
 
-extension Text {
+extension View {
     func firstFont() -> some View {
         self
             .foregroundStyle(.white)
