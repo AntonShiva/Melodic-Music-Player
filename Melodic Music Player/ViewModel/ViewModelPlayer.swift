@@ -7,6 +7,8 @@ import AVFAudio
 @Observable
 class ViewModelPlayer {
     var melodies: [Model] = []
+    var currentTime: TimeInterval = 0.0
+    var trackDuration: TimeInterval = 0.0
     var player: AVAudioPlayer?
     var isPlaying = false
     var currentIndex: Int?
@@ -21,6 +23,7 @@ class ViewModelPlayer {
             self.player = try AVAudioPlayer(data: melody.data)
             self.player?.play()
             isPlaying = true
+            trackDuration = player?.duration ?? 0.0
             // текущий индекс мелодии
             if let index = melodies.firstIndex(where: { $0.id == melody.id}){
                 currentIndex = index
@@ -37,6 +40,15 @@ class ViewModelPlayer {
             player?.play()
         }
         isPlaying.toggle()
+    }
+    
+    func seek(to time: TimeInterval){
+        player?.currentTime = time
+    }
+    
+    func update(){
+        guard let player = player else { return }
+        currentTime = player.currentTime
     }
     
     func formatted(duration: TimeInterval) -> String {

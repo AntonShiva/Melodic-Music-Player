@@ -5,6 +5,7 @@ struct HomeView: View {
     @State private var viewModel = ViewModelPlayer()
     @State private var isShow = false
     @Namespace private var animationTrackDescription
+    @State private var trackIsRewindin = false
     var frameAlbumCover: CGFloat {
         isShow ? 330 : 50
     }
@@ -102,9 +103,9 @@ struct HomeView: View {
 
                 VStack{
                     HStack{
-                        Text("00:00")
+                        Text(viewModel.formatted(duration: viewModel.currentTime))
                         Spacer()
-                        Text("00:10")
+                        Text(viewModel.formatted(duration: viewModel.trackDuration))
                     }
                     .secondFont()
                     .padding()
