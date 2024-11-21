@@ -6,7 +6,7 @@ import AVFoundation
 struct FileManager: View {
     @Binding var melodies: [Model]
     @State var openFile = false
-   
+    
     var body: some View {
         VStack {
             Button {
@@ -23,7 +23,6 @@ struct FileManager: View {
             allowedContentTypes: [.audio],
             allowsMultipleSelection: false
         ) { result in
-          
             Task {
                 do {
                     let urls = try result.get()

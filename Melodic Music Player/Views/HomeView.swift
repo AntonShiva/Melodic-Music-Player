@@ -86,8 +86,8 @@ struct HomeView: View {
                    
                     Spacer()
                     
-                    CostomButton(label: "play.fill", size: .title) {
-                        
+                    CostomButton(label: viewModel.isPlaying ? "pause.fill" : "play.fill" , size: .title) {
+                        viewModel.playPause()
                     }
                 }
             }
@@ -114,8 +114,8 @@ struct HomeView: View {
                         CostomButton(label: "backward.end.fill", size: .system(size: 25)) {
                             
                         }
-                        CostomButton(label: "play.circle.fill", size: .system(size: 50)) {
-                            
+                        CostomButton(label: viewModel.isPlaying ? "pause.circle.fill" : "play.circle.fill", size: .system(size: 50)) {
+                            viewModel.playPause()
                         }
                         CostomButton(label: "forward.end.fill", size: .system(size: 25)) {
                             

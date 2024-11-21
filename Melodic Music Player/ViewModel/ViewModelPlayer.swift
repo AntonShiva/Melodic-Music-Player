@@ -28,6 +28,15 @@ class ViewModelPlayer {
         } catch {
             print("Error \(error.localizedDescription)")
         }
+     }
+    
+    func playPause() {
+        if isPlaying {
+            player?.pause()
+        } else {
+            player?.play()
+        }
+        isPlaying.toggle()
     }
     
     func formatted(duration: TimeInterval) -> String {
