@@ -5,7 +5,6 @@ struct HomeView: View {
     @State private var viewModel = ViewModelPlayer()
     @State private var isShow = false
     @Namespace private var animationTrackDescription
-    @State private var trackIsRewindin = false
     var frameAlbumCover: CGFloat {
         isShow ? 330 : 50
     }
@@ -110,7 +109,20 @@ struct HomeView: View {
                     .secondFont()
                     .padding()
                     
-                    Divider()
+                    Slider(value: $viewModel.currentTime, in: 0...viewModel.trackDuration ){ change in
+                        
+                        if !change {
+                            viewModel.seek(to: viewModel.currentTime)
+                        }
+                    }
+                    .tint(.white)
+                    .offset(y: -15)
+                    .onAppear{
+                        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                            viewModel.update()
+                        }
+                    }
+                    
                     HStack(spacing: 50){
                         CostomButton(label: "backward.end.fill", size: .system(size: 25)) {
                             
@@ -122,6 +134,7 @@ struct HomeView: View {
                             
                         }
                     }
+                  
                 }
                 .padding(40)
             }
