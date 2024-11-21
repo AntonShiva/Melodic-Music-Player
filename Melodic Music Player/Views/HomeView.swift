@@ -24,69 +24,13 @@ struct HomeView: View {
                         .listStyle(.plain)
                                          Spacer()
                     // Player
-                    VStack{
-                        HStack{
-                            Color.cyan
-                                .frame(width: frameAlbumCover,height: frameAlbumCover)
-                                .cornerRadius(10)
-                            if !isShow {
-                                VStack(alignment: .leading){
-                                    Text("Название")
-                                        .firstFont()
-                                    Text("Исполнитель")
-                                        .secondFont()
-                                }
-                                .matchedGeometryEffect(id: "animationDescription", in: animationTrackDescription)
-                                
-                                Spacer()
-                               
-                                CostomButton(label: "play.fill", size: .title) {
-                                    
-                                }
+                    if viewModel.currentMelody != nil {
+                        Player()
+                        .frame(height: isShow ? UIScreen.main.bounds.height + 250 : 70)
+                        .onTapGesture {
+                            withAnimation(.spring()) {
+                                self.isShow.toggle()
                             }
-                        }
-                        .padding()
-                        .background(isShow ? .clear : .black.opacity(0.15))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .padding()
-                        
-                        if isShow {
-                            VStack{
-                                Text("Название")
-                                    .firstFont()
-                                Text("Исполнитель")
-                                    .secondFont()
-                            }
-                            .matchedGeometryEffect(id: "animationDescription", in: animationTrackDescription)
-                            VStack{
-                                HStack{
-                                    Text("00:00")
-                                    Spacer()
-                                   Text("00:10")
-                                }
-                                .secondFont()
-                                .padding()
-                                
-                                Divider()
-                                HStack(spacing: 50){
-                                    CostomButton(label: "backward.end.fill", size: .system(size: 25)) {
-                                        
-                                    }
-                                    CostomButton(label: "play.circle.fill", size: .system(size: 50)) {
-                                        
-                                    }
-                                    CostomButton(label: "forward.end.fill", size: .system(size: 25)) {
-                                        
-                                    }
- }
-                            }
-                            .padding(40)
-                        }
-                    }
-                    .frame(height: isShow ? UIScreen.main.bounds.height + 250 : 70)
-                    .onTapGesture {
-                        withAnimation(.spring()) {
-                            self.isShow.toggle()
                         }
                     }
                 }
@@ -96,8 +40,93 @@ struct HomeView: View {
                     FileManager(melodies: $viewModel.melodies)
                 }
             }
+            
+            
        }
      }
+    @ViewBuilder
+    private func TrackDescription() -> some View {
+        VStack(alignment: isShow ? .center : .leading){
+            if let currentMelody = viewModel.currentMelody {
+                Text(currentMelody.name)
+                    .firstFont()
+                Text(currentMelody.artist ?? "Неизвестный артист")
+                    .secondFont()
+            }
+        }
+        .matchedGeometryEffect(id: "animationDescription", in: animationTrackDescription)
+    }
+    
+    @ViewBuilder
+    private func Player() -> some View {
+        VStack{
+            HStack{
+                if let data = viewModel.currentMelody?.image, let image = UIImage(data: data) {
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: frameAlbumCover, height: frameAlbumCover)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                } else {
+                    ZStack{
+                        Color.gray
+                            .frame(width: frameAlbumCover, height: frameAlbumCover)
+                        
+                        Image(systemName: "music.quarternote.3")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 32)
+                            .foregroundStyle(.white)
+                    }
+                    .cornerRadius(10)
+                }
+                
+                if !isShow {
+                    TrackDescription()
+                   
+                    Spacer()
+                    
+                    CostomButton(label: "play.fill", size: .title) {
+                        
+                    }
+                }
+            }
+            .padding()
+            .background(isShow ? .clear : .black.opacity(0.15))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .padding()
+            
+            if isShow {
+                
+                TrackDescription()
+
+                VStack{
+                    HStack{
+                        Text("00:00")
+                        Spacer()
+                        Text("00:10")
+                    }
+                    .secondFont()
+                    .padding()
+                    
+                    Divider()
+                    HStack(spacing: 50){
+                        CostomButton(label: "backward.end.fill", size: .system(size: 25)) {
+                            
+                        }
+                        CostomButton(label: "play.circle.fill", size: .system(size: 50)) {
+                            
+                        }
+                        CostomButton(label: "forward.end.fill", size: .system(size: 25)) {
+                            
+                        }
+                    }
+                }
+                .padding(40)
+            }
+        }
+    }
+    
     private func CostomButton(label: String, size: Font, action: @escaping () -> ()) -> some View {
         Button {
             action()
