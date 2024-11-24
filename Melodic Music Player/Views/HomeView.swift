@@ -125,13 +125,13 @@ struct HomeView: View {
                     
                     HStack(spacing: 50){
                         CostomButton(label: "backward.end.fill", size: .system(size: 25)) {
-                            
+                            viewModel.previousMelody()
                         }
                         CostomButton(label: viewModel.isPlaying ? "pause.circle.fill" : "play.circle.fill", size: .system(size: 50)) {
                             viewModel.playPause()
                         }
                         CostomButton(label: "forward.end.fill", size: .system(size: 25)) {
-                            
+                            viewModel.nextMelody()
                         }
                     }
                   

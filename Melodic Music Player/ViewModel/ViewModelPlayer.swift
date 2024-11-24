@@ -51,6 +51,18 @@ class ViewModelPlayer {
         currentTime = player.currentTime
     }
     
+    func nextMelody(){
+         guard let currentIndex = currentIndex else { return }
+         let nextIndex = currentIndex + 1 < melodies.count ? currentIndex + 1 : 0
+         play(melody: melodies[nextIndex])
+     }
+     
+     func previousMelody(){
+         guard let currentIndex = currentIndex else { return }
+         let previousIndex = currentIndex  > 0 ? currentIndex - 1 : melodies.count - 1
+         play(melody: melodies[previousIndex])
+     }
+    
     func formatted(duration: TimeInterval) -> String {
         let format = DateComponentsFormatter()
         format.allowedUnits = [.minute, .second]
