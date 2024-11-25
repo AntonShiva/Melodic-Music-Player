@@ -36,6 +36,12 @@ class ViewModelPlayer: NSObject, AVAudioPlayerDelegate {
         }
      }
     
+    func stop(){
+        self.player?.stop()
+        self.player = nil
+        isPlaying = false
+    }
+    
     func playPause() {
         if isPlaying {
             player?.pause()
@@ -78,6 +84,19 @@ class ViewModelPlayer: NSObject, AVAudioPlayerDelegate {
         format.unitsStyle = .positional
         format.zeroFormattingBehavior = .pad
         return format.string(from: duration) ?? ""
+    }
+    
+    func delete(indexSet: IndexSet) {
+        if let index = indexSet.first {
+            stop()
+            melodies.remove(at: index)
+        }
+    }
+    func delete(melody: Model) {
+        if let index = melodies.firstIndex(where: { $0.id == melody.id }) {
+            stop()
+            melodies.remove(at: index)
+        }
     }
 
   }

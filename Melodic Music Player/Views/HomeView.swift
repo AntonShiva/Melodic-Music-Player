@@ -13,12 +13,21 @@ struct HomeView: View {
             ZStack {
                 Background()
                 VStack{
-                   
-                        // Список композиций
+                    
+                    // Список композиций
+                    
                         List(viewModel.melodies) { melody in
                             СustomСell(melody: melody, formatted: viewModel.formatted)
                                 .onTapGesture {
-                                    viewModel.play(melody: melody )
+                                    viewModel.play(melody: melody)
+                                }
+                                .swipeActions(edge: .trailing) {
+                                    Button(role: .destructive) {
+                                        viewModel.delete(melody: melody)
+                                    } label: {
+                                        Label("Удалить", systemImage: "trash")
+                                    }
+                                    .tint(.cyan)
                                 }
                         }
                         .listStyle(.plain)
