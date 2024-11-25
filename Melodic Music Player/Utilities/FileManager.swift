@@ -6,6 +6,7 @@ import AVFoundation
 struct FileManager: View {
     @Binding var melodies: [Model]
     @State var openFile = false
+   
     
     var body: some View {
         VStack {

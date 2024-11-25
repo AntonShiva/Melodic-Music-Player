@@ -61,26 +61,8 @@ struct HomeView: View {
     private func Player() -> some View {
         VStack{
             HStack{
-                if let data = viewModel.currentMelody?.image, let image = UIImage(data: data) {
-                    Image(uiImage: image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: frameAlbumCover, height: frameAlbumCover)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                } else {
-                    ZStack{
-                        Color.gray
-                            .frame(width: frameAlbumCover, height: frameAlbumCover)
-                        
-                        Image(systemName: "music.quarternote.3")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 32)
-                            .foregroundStyle(.white)
-                    }
-                    .cornerRadius(10)
-                }
-                
+                CoverView(cover: viewModel.currentMelody?.image, size: frameAlbumCover)
+               
                 if !isShow {
                     TrackDescription()
                    

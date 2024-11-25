@@ -1,12 +1,14 @@
 
 
 import Foundation
+import SwiftUI
 import Observation
 import AVFAudio
 
 @Observable
 class ViewModelPlayer {
-    var melodies: [Model] = []
+ var melodies: [Model] = []
+    
     var currentTime: TimeInterval = 0.0
     var trackDuration: TimeInterval = 0.0
     var player: AVAudioPlayer?
