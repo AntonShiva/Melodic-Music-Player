@@ -6,7 +6,7 @@ import Observation
 import AVFAudio
 
 @Observable
-class ViewModelPlayer {
+class ViewModelPlayer: NSObject, AVAudioPlayerDelegate {
  var melodies: [Model] = []
     
     var currentTime: TimeInterval = 0.0
@@ -23,6 +23,7 @@ class ViewModelPlayer {
     func play(melody: Model) {
         do {
             self.player = try AVAudioPlayer(data: melody.data)
+            self.player?.delegate = self
             self.player?.play()
             isPlaying = true
             trackDuration = player?.duration ?? 0.0
@@ -64,6 +65,12 @@ class ViewModelPlayer {
          let previousIndex = currentIndex  > 0 ? currentIndex - 1 : melodies.count - 1
          play(melody: melodies[previousIndex])
      }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        if flag {
+            nextMelody()
+        }
+    }
     
     func formatted(duration: TimeInterval) -> String {
         let format = DateComponentsFormatter()
