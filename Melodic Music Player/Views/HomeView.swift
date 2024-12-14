@@ -8,16 +8,20 @@ struct HomeView: View {
     var frameAlbumCover: CGFloat {
         isShow ? 330 : 50
     }
+    
     var body: some View {
         NavigationStack {
             ZStack {
-                Background()
+                BG()
+                    .ignoresSafeArea()
+               
                 VStack{
                     
                     // Список композиций
                     
                         List(viewModel.melodies) { melody in
                             СustomСell(melody: melody, formatted: viewModel.formatted)
+                         
                                 .onTapGesture {
                                     viewModel.play(melody: melody)
                                 }
@@ -43,7 +47,9 @@ struct HomeView: View {
                         }
                     }
                 }
+              
             }
+           
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     FileManager(melodies: $viewModel.melodies)
@@ -52,7 +58,9 @@ struct HomeView: View {
             
             
        }
+        
      }
+    
     @ViewBuilder
     private func TrackDescription() -> some View {
         VStack(alignment: isShow ? .center : .leading){
@@ -71,6 +79,7 @@ struct HomeView: View {
         VStack{
             HStack{
                 CoverView(cover: viewModel.currentMelody?.image, size: frameAlbumCover)
+               
                
                 if !isShow {
                     TrackDescription()

@@ -14,7 +14,7 @@ struct FileManager: View {
                 self.openFile.toggle()
             } label: {
                 Image(systemName: "plus")
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.blue)
             }
             
         }

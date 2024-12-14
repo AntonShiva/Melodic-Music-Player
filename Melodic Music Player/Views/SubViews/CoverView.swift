@@ -10,6 +10,9 @@ import SwiftUI
 struct CoverView: View {
     let cover: Data?
     let size: CGFloat
+    //Свойства для блестящей ряби
+    @State private var counter: Int = 0
+    @State private var origin: CGPoint = .zero
     
     var body: some View {
         if let data = cover, let image = UIImage(data: data) {
@@ -18,16 +21,23 @@ struct CoverView: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: size, height: size)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
+            // Эффект ряби
+                    .rippleEffect(at: origin, trigger: counter)
+                    .onTapGesture { location in
+                        origin = location
+                        counter += 1
+                    }
         } else {
             ZStack{
                 Color.gray
                     .frame(width: size, height: size)
                     
-                Image(systemName: "music.quarternote.3")
+                Image(systemName: "music.note")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(height: 32)
+                    .frame(height: size / 2)
                     .foregroundStyle(.white)
+                    
             }
             .cornerRadius(10)
         }
