@@ -4,6 +4,12 @@ A modern iOS music player built with SwiftUI that offers a beautiful interface a
 
 Современный iOS музыкальный плеер, созданный с помощью SwiftUI, предлагающий красивый интерфейс и мощные функции.
 
+## Screenshots / Скриншоты
+
+| Home View | Mini Player |  Player |
+| :---------: | :---------: | :---------: |
+| <img src="https://github.com/user-attachments/assets/38e79aef-5e94-4a31-af87-4cf6dc866876" width="250px" /> | <img src="https://github.com/user-attachments/assets/159fe520-e7ad-4e4f-a571-84c4ac127df0" width="250px" /> | <img src="https://github.com/user-attachments/assets/686a456a-62f3-4259-9985-54ff524786be" width="250px" />
+
 ## Architecture / Архитектура
 
 - MVVM design pattern / Паттерн проектирования MVVM
@@ -38,11 +44,7 @@ A modern iOS music player built with SwiftUI that offers a beautiful interface a
 3. Enjoy your music! / Наслаждайтесь музыкой!
 
 
-## Screenshots / Скриншоты
 
-| Home View | Mini Player |  Player |
-| :---------: | :---------: | :---------: |
-| <img src="https://github.com/user-attachments/assets/38e79aef-5e94-4a31-af87-4cf6dc866876" width="250px" /> | <img src="https://github.com/user-attachments/assets/159fe520-e7ad-4e4f-a571-84c4ac127df0" width="250px" /> | <img src="https://github.com/user-attachments/assets/686a456a-62f3-4259-9985-54ff524786be" width="250px" />
 
 
 
