@@ -23,7 +23,7 @@ A modern iOS music player built with SwiftUI that offers a beautiful interface a
 
 - iOS 18.0+
 - Xcode 16.0+
-- Swift 5.5+
+- Swift 5.9+
 
 ## Installation / Установка
 
