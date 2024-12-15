@@ -3,7 +3,7 @@
 import SwiftUI
 import AVFoundation
 
-struct FileManager: View {
+struct FileImporterView: View {
     @Binding var melodies: [Model]
     @State var openFile = false
    

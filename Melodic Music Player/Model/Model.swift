@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct Model: Identifiable {
+struct Model: Identifiable, Codable {
     var id = UUID()
     var name: String
     var artist: String?

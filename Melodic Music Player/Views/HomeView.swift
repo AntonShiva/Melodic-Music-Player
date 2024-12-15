@@ -52,7 +52,7 @@ struct HomeView: View {
            
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    FileManager(melodies: $viewModel.melodies)
+                    FileImporterView(melodies: $viewModel.melodies)
                 }
             }
             

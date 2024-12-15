@@ -7,8 +7,19 @@ import AVFAudio
 
 @Observable
 class ViewModelPlayer: NSObject, AVAudioPlayerDelegate {
- var melodies: [Model] = []
-    
+    private let storageService = MelodyStorageService()
+       
+       var melodies: [Model] = [] {
+           didSet {
+               storageService.saveMelodies(melodies)
+           }
+       }
+       
+       override init() {
+           super.init()
+           melodies = storageService.loadMelodies()
+       }
+ 
     var currentTime: TimeInterval = 0.0
     var trackDuration: TimeInterval = 0.0
     var player: AVAudioPlayer?
