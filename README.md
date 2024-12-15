@@ -40,5 +40,10 @@ A modern iOS music player built with SwiftUI that offers a beautiful interface a
 
 ## Screenshots / Скриншоты
 
-[Add your screenshots here / Добавьте ваши скриншоты здесь]
+| Home View | Mini Player |  Player |
+| :---------: | :---------: | :---------: |
+| <img src="https://github.com/user-attachments/assets/38e79aef-5e94-4a31-af87-4cf6dc866876" width="250px" /> | <img src="https://github.com/user-attachments/assets/159fe520-e7ad-4e4f-a571-84c4ac127df0" width="250px" /> | <img src="https://github.com/user-attachments/assets/686a456a-62f3-4259-9985-54ff524786be" width="250px" />
+
+
+
 
